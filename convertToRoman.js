@@ -1,6 +1,5 @@
 function convertToRoman(num) {
     let romanObj = {
-        "0": "",
         "1": "I",
         "2": "II",
         "3": "III",
@@ -15,9 +14,9 @@ function convertToRoman(num) {
         "30": "XXX",
         "40": "XL",
         "50": "L",
-        "60": "LC",
-        "70": "LCC",
-        "80": "LCCC",
+        "60": "LX",
+        "70": "LXX",
+        "80": "LXXX",
         "90": "XC",
         "100": "C",
         "200": "CC",
@@ -28,7 +27,9 @@ function convertToRoman(num) {
         "700": "DCC",
         "800": "DCCC",
         "900": "CM",
-        "1000": "M" 
+        "1000": "M",
+        "2000": "MM",
+        "3000": "MMM" 
     }
 
     let strNum = num.toString();
@@ -36,10 +37,12 @@ function convertToRoman(num) {
     function getNumArray(strNum) {
         let result = [];
         let zeroCounter = strNum.length - 1;
+
         for (let i = 0; i < strNum.length; i++) {
-            console.log(i);
-            console.log(strNum[i]);
-            result.push(strNum[i]);
+            let normalizedNum = generateZeros(strNum[i], zeroCounter);
+            result.push(normalizedNum);
+
+            zeroCounter--;
         }
         return result;
     }
@@ -47,14 +50,33 @@ function convertToRoman(num) {
     function generateZeros(num, count) {
 
         let result = `${num}`;
-        for (let i = 0; i < count + 1; i++) {
-
+        for (let i = 0; i < count; i++) {
+            result += "0";
         }
+        return result;
     }
 
-    let romanNum = getNumArray(strNum);
+    let formattedNumArray = getNumArray(strNum);
+
+    function generateRomanFig(array) {
+        
+        let romanStr = "";
+        for (let i = 0; i < array.length;  i++) {
+            if (array[i] == 0) {
+                romanStr += "";
+            } else {
+                romanStr += romanObj[array[i]];
+            }
+        }
+        return romanStr;
+    }
+    
+    let romanNum = generateRomanFig(formattedNumArray);
+    
     console.log(romanNum);
+
     return romanNum;
    }
    
-   convertToRoman(365);
+   convertToRoman(68);
+   convertToRoman(83);
