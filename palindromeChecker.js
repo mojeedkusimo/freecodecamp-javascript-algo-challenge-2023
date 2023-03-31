@@ -1,5 +1,7 @@
 // -----------------------2020-------------------
-let palindrome = (str) => {
+let palindrome1 = (str) => {
+    let startTime = new Date();
+    console.log(startTime);
     let newString = str.replace(/[^A-Z0-9]/gi, '').toLowerCase();
     let revString = '';
 
@@ -8,6 +10,9 @@ let palindrome = (str) => {
     }
     
     if (newString === revString) {
+        let endTime = new Date();
+        console.log(endTime);
+        console.log(true);
         return true;
     }
     else {
@@ -16,13 +21,13 @@ let palindrome = (str) => {
 }
 
 // --------------------2023----------------------
-function palindrome(str) {
-
+function palindrome2(str) {
+    let startTime = new Date();
+    console.log(startTime);
     let nonAlphaNumChars = /[^A-Za-z0-9]/g;
     let newStr = str.replace(nonAlphaNumChars,"").toLowerCase();
 
-    let startTime = new Date();
-    console.log(startTime);
+
     let j = newStr.length - 1;
     for (let i = 0; i <  newStr.length; i++) {
 
@@ -40,5 +45,6 @@ function palindrome(str) {
     return true;
 }
 
-palindrome("A man, a plan, a canal. Panama");
+// palindrome1("A man, a plan, a canal. Panama");
+palindrome2("A man, a plan, a canal. Panama");
 // palindrome("eyes");
